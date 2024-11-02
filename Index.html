@@ -16,59 +16,29 @@
     <nav class="bg-pink-400 p-4 text-white flex justify-between items-center">
         <h1 class="text-2xl text-blue-800 font-bold">Task-Flow</h1>
         <div class="flex space-x-4">
-            <input type="text" placeholder="Search..." class="p-2 rounded bg-white text-gray-800 outline-blue-800">
             <button onclick="openModal()" class="bg-blue-800 px-4 py-2 rounded hover:bg-sky-700">Add Task +</button>
-            <button class="bg-blue-800 px-4 py-2 rounded">Add Multiple +</button>
         </div>
     </nav>
-
     <!-- Task Section -->
     <div class="p-6">
         <!-- Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 drop-shadow-lg">
             <!-- To Do -->
             <div class="bg-white p-4 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4 border-b border-red-500 pb-2">To do | 3</h2>
-                <div class="space-y-4">
-                    <!-- Task Card -->
-                    <div class="border border-red-500 rounded p-2">
-                        <p>Brief Soutenances Croisées</p>
-                        <div class="flex justify-between mt-2">
-                            <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                            <button class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="text-xl font-semibold mb-4 border-b border-red-500 pb-2">To do | <span id="todoCount">0</span></h2>
+                <div class="space-y-4 tasks ToDo"></div>
             </div>
 
             <!-- In Progress Column -->
             <div class="bg-white p-4 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4 border-b border-yellow-500 pb-2">In progress | 1</h2>
-                <div class="space-y-4">
-                    <!-- Task Card -->
-                    <div class="border border-yellow-500 rounded p-2">
-                        <p>WORKSHOP 2</p>
-                        <div class="flex justify-between mt-2">
-                            <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                            <button class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="text-xl font-semibold mb-4 border-b border-yellow-500 pb-2">In progress | <span id="inProgressCount">0</span></h2>
+                <div class="space-y-4 tasks InProgress"></div>
             </div>
 
             <!-- Done Column -->
             <div class="bg-white p-4 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4 border-b border-green-500 pb-2">Done | 2</h2>
-                <div class="space-y-4">
-                    <!-- Task Card -->
-                    <div class="border border-green-500 rounded p-2">
-                        <p>Brief 5</p>
-                        <div class="flex justify-between mt-2">
-                            <button class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                            <button class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="text-xl font-semibold mb-4 border-b border-green-500 pb-2">Done | <span id="doneCount">0</span></h2>
+                <div class="space-y-4 tasks Done"></div>
             </div>
         </div>
     </div>
@@ -76,19 +46,19 @@
     <!-- Modal: Add New Task -->
     <div id="taskModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-lg">
-            <h2 class="text-2xl font-bold mb-4">Add New Task</h2>
+            <h2 class="text-2xl font-bold mb-4 modal-title">Add New Task</h2>
 
             <!-- Title  -->
             <label class="block mb-2 text-sm font-medium text-gray-700">Title</label>
-            <input type="text" class="w-full p-2 mb-4 border border-gray-300 rounded" placeholder="Enter task title">
+            <input type="text" id="taskTitle" class="w-full p-2 mb-4 border border-gray-300 rounded" placeholder="Enter task title">
 
             <!-- Description  -->
             <label class="block mb-2 text-sm font-medium text-gray-700">Description</label>
-            <textarea class="w-full p-2 mb-4 border border-gray-300 rounded" rows="3" placeholder="Enter task description"></textarea>
+            <textarea id="taskDesc" class="w-full p-2 mb-4 border border-gray-300 rounded" rows="3" placeholder="Enter task description"></textarea>
 
             <!-- Status -->
             <label class="block mb-2 text-sm font-medium text-gray-700">Status</label>
-            <select class="w-full p-2 mb-4 border border-gray-300 rounded">
+            <select id="taskStatus" class="w-full p-2 mb-4 border border-gray-300 rounded">
                 <option>To Do</option>
                 <option>Doing</option>
                 <option>Done</option>
@@ -96,11 +66,11 @@
 
             <!-- Due Date  -->
             <label class="block mb-2 text-sm font-medium text-gray-700">Due Date</label>
-            <input type="date" class="w-full p-2 mb-4 border border-gray-300 rounded">
+            <input type="date" id="taskDueDate" class="w-full p-2 mb-4 border border-gray-300 rounded">
 
             <!-- Priority  -->
             <label class="block mb-2 text-sm font-medium text-gray-700">Priority</label>
-            <select class="w-full p-2 mb-4 border border-gray-300 rounded">
+            <select id="taskPriority" class="w-full p-2 mb-4 border border-gray-300 rounded">
                 <option value="P1" class="text-red-500">P1 - High</option>
                 <option value="P2" class="text-yellow-500">P2 - Medium</option>
                 <option value="P3" class="text-green-500">P3 - Low</option>
@@ -109,11 +79,11 @@
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-2">
                 <button onclick="closeModal()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
-                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Task</button>
+                <button onclick="saveTask()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 modal-button">Add Task</button>
             </div>
         </div>
     </div>
-    <script src="./Taskflow/script.js"></script>
-
+    
+    <script src="./script.js"></script>
 </body>
 </html>
