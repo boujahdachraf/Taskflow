@@ -23,6 +23,8 @@ function saveTask() {
     }
 
     tasks.push({ title, desc, status, dueDate, priority });
+    console.log(tasks);
+    
     clearInputs();
     displayTasks();
     closeModal();
@@ -87,19 +89,19 @@ function getPriorityColor(priority) {
 }
 
 // Delete task
-function deleteTask(index) {
-    tasks.splice(index, 1);
+function deleteTask(taskIndex) {
+    tasks.splice(taskIndex, 1);
     displayTasks();
 }
 
 // Edit task
 function editTask(index) {
-    const task = tasks[index];
-    document.getElementById("taskTitle").value = task.title;
-    document.getElementById("taskDesc").value = task.desc;
-    document.getElementById("taskStatus").value = task.status;
-    document.getElementById("taskDueDate").value = task.dueDate;
-    document.getElementById("taskPriority").value = task.priority;
+    const editedTask = tasks[index];
+    document.getElementById("taskTitle").value = editedTask.title;
+    document.getElementById("taskDesc").value = editedTask.desc;
+    document.getElementById("taskStatus").value = editedTask.status;
+    document.getElementById("taskDueDate").value = editedTask.dueDate;
+    document.getElementById("taskPriority").value = editedTask.priority;
 
     openModal();
 
@@ -123,6 +125,7 @@ function editTask(index) {
 
 // Open modal on button click
 document.querySelector(".bg-blue-800").addEventListener("click", openModal);
+
 
 
 
