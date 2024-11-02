@@ -74,6 +74,55 @@ function displayTasks() {
     updateCounts(todoCount, inProgressCount, doneCount);
 }
 
+// Update task counts
+function updateCounts(todoCount, inProgressCount, doneCount) {
+    document.getElementById("todoCount").textContent = todoCount;
+    document.getElementById("inProgressCount").textContent = inProgressCount;
+    document.getElementById("doneCount").textContent = doneCount;
+}
+
+// Get color by priority
+function getPriorityColor(priority) {
+    return priority === "P1" ? "red" : priority === "P2" ? "orange" : "green";
+}
+
+// Delete task
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    displayTasks();
+}
+
+// Edit task
+function editTask(index) {
+    const task = tasks[index];
+    document.getElementById("taskTitle").value = task.title;
+    document.getElementById("taskDesc").value = task.desc;
+    document.getElementById("taskStatus").value = task.status;
+    document.getElementById("taskDueDate").value = task.dueDate;
+    document.getElementById("taskPriority").value = task.priority;
+
+    openModal();
+
+    const saveButton = document.querySelector(".modal-button");
+    saveButton.textContent = "Update Task";
+    saveButton.onclick = function () {
+        tasks[index] = {
+            title: document.getElementById("taskTitle").value,
+            desc: document.getElementById("taskDesc").value,
+            status: document.getElementById("taskStatus").value,
+            dueDate: document.getElementById("taskDueDate").value,
+            priority: document.getElementById("taskPriority").value,
+        };
+
+        displayTasks();
+        closeModal();
+        saveButton.textContent = "Add Task";
+        saveButton.onclick = saveTask;
+    };
+}
+
+// Open modal on button click
+document.querySelector(".bg-blue-800").addEventListener("click", openModal);
 
 
 
