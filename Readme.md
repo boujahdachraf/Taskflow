@@ -1,8 +1,8 @@
-#TaskFlow - Gestionnaire de Tâches
+# TaskFlow - Gestionnaire de Tâches
 
 TaskFlow est une application de gestion de tâches développée pour aider l’équipe de développement à organiser et suivre facilement leurs tâches.
 
-##Fonctionnalités Principales:
+## Fonctionnalités Principales:
 
 Interface d'Accueil
 Une page d'accueil claire et soignée, construite avec HTML, CSS, et Tailwind CSS.
@@ -25,7 +25,7 @@ Les tâches peuvent être supprimées et les formulaires sont validés pour assu
 Hosting en Ligne
 Disponible sur GitHub Pages pour un accès facile.
 
-##Technologies:
+## Technologies:
 
 HTML,Tailwind CSS : pour la structure et le style.
 JavaScript : pour rendre l'application interactive et  dynamique.
