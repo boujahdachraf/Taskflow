@@ -56,8 +56,8 @@ function displayTasks() {
             <p class="text-sm text-gray-500">Due: ${task.dueDate}</p>
             <p class="text-sm text-gray-500">Priority: ${task.priority}</p>
             <div class="flex space-x-2 mt-2">
-                <button onclick="deleteTask(${index})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                <button onclick="editTask(${index})" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                <button onclick="deleteTask(${index})" class="hover:bg-sky-700 bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                <button onclick="editTask(${index})" class="hover:bg-sky-700 bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
             </div>
         `;
 
